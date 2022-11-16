@@ -1,0 +1,23 @@
+.footer button{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.generic-button {
+  text-align: left;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+
+  letter-spacing: 1.92px;
+
+  background: #fff;
+  border: 0px;
+
+}

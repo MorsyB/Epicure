@@ -1,0 +1,113 @@
+.navigation {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #fafafa;
+    color: black;
+    z-index: 1;
+}
+
+.brand-name {
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 33%;
+    text-align: center;
+}
+
+
+.navigation-menu {
+    width: 33%;
+    margin-right: auto;
+}
+.navigation-menu img{
+  margin-left: 22px;
+}
+
+.navigation-menu ul {
+    display: flex;
+    padding: 0;
+}
+.navigation-menu li {
+    list-style-type: none;
+    margin: 0 1rem;
+}
+.navigation-menu li a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.logo img{
+    margin-left: auto;
+    margin-right: auto;
+}
+.right-side{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+}
+
+.right-side img{
+    margin-right: auto;
+}
+
+.popup{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    background: #FAFAFA;
+    top: 0;
+    width: 100%;
+    align-items: center;
+}
+
+h6{
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+hr{
+  border: 1px solid #F2F2F2;
+}
+
+  @media screen and (max-width: 768px) {
+    
+    .navigation-menu ul {
+        display: none;
+      }
+
+      .navigation-menu ul {
+        position: absolute;
+        flex-direction: column;
+        top: 23px;
+        width: 100%;
+        background-color: #FFF;
+      }
+      .navigation-menu li {
+        text-align: center;
+        padding-left: 15px;
+        margin: 0;
+      }
+      .navigation-menu li a {
+        color: black;
+        width: 100%;
+        padding: 1.5rem 0;
+      }
+      .navigation-menu li:hover {
+        background-color: #eee;
+      }
+      .navigation-menu ul {
+        /* previous styles */
+        display: none;
+      }
+      .navigation-menu.expanded ul {
+        display: block;
+        justify-content: center;
+      }
+  }

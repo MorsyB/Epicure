@@ -1,0 +1,36 @@
+.hero{
+    background-image: url('hero-picture 1.png');
+    width: 100%;
+    height: 273px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-search{
+    width: 90%;
+    height: 50%;
+    background: rgb(243, 240, 240);
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hero-input{
+    width: 90%;
+}
+
+.hero-label{
+    font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 200;
+font-size: 24px;
+line-height: 32px;
+/* or 133% */
+
+letter-spacing: 1.97px;
+
+color: #000000;
+}
