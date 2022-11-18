@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
-function Footer(){
 
-    return(<div className='footer'>
-        <button className='generic-button'>Contact Us</button>
-        <button className='generic-button'>Term of Use</button>
-        <button className='generic-button'>Privacy Policy</button>
-    </div>);
-    }
-    export default Footer;
+function Footer() {
+    const navigate = useNavigate();
+    return (
+        <div className='footer'>
+            <button onClick={()=>{navigate('/ContactUs')}} className='generic-button'>Contact Us</button>
+            <button onClick={()=>{navigate('/TermOfUse')}} className='generic-button'>Term of Use</button>
+            <button onClick={()=>{navigate('/PrivacyPolicy')}} className='generic-button'>Privacy Policy</button>
+        </div>);
+}
+export default Footer;

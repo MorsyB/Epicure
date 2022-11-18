@@ -1,60 +1,59 @@
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
+import { AllDishes, AllRestaurants } from '../../Data/Data';
+import { Dish, Restaurant } from '../../Types/Types';
 import './SlidingContent.css';
 import { useNavigate } from "react-router-dom";
+import DishCard from '../DishCard/DishCard';
+import rightArrows from '../../Data/Pictures/right-arrows.png'
+import spicy from '../../Data/Pictures/spicy.png'
+import vegan from '../../Data/Pictures/vegan.png'
+import vegetarian from '../../Data/Pictures/vegetarian.png'
+import Slider from '../Slider/Slider';
 
 function SlidingContent() {
     const navigate = useNavigate();
+
+    const displayPopularRestaurants = () => {
+        return (
+            <>
+                <Slider title='popular restaurant in epicure:' button='Restaurants'/>
+            </>
+        )
+    };
+
+    const displayDishes = () => {
+        return (<>
+            <Slider title='Signature Dish Of:' button='Dishes'/>
+        </>
+        )
+    }
+
+    const displaySignatureDishes = () => {
+        return (
+            <div className='signature-dish'>
+                <p className="div-title">Signature Dish Of:</p>
+                <img src={spicy} />
+                <p className="div-element">Spicy</p>
+                <img src={vegan} />
+                <p className="div-element">Vegitarian</p>
+                <img src={vegetarian} />
+                <p className="div-element">Vegan</p>
+            </div>
+        )
+    }
+
     return (
         <>
-            <p className="div-title">popular restaurant in epicure:</p>
-            <div className="slider">
-                <RestaurantCard restaurants={[{
-                    name: "rest1",
-                    owner: "mo",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-
-                <RestaurantCard restaurants={[{
-                    name: "rest2",
-                    owner: "moSa",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-                <RestaurantCard restaurants={[{
-                    name: "rest3",
-                    owner: "don",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-
+            <div className='sliding-div'>
+                <br />
+                {displayPopularRestaurants()}
+                <br />
+                {displayDishes()}
+                <br />
             </div>
-            <button onClick={() => { navigate("./Restaurants") }}>All Restaurants</button><br />
-            <p className="div-title">Signature Dish Of:</p>
-            <div className="slider">
-                <RestaurantCard restaurants={[{
-                    name: "rest1",
-                    owner: "mo",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-
-                <RestaurantCard restaurants={[{
-                    name: "rest2",
-                    owner: "moSa",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-                <RestaurantCard restaurants={[{
-                    name: "rest3",
-                    owner: "don",
-                    dishes: [{ name: "asd", ingredients: ['asd'], picture: "13", price: 45 }],
-                    picture: "12as"
-                }]} />
-
-            </div>
-            <button onClick={() => { navigate("./Restaurants") }}>All Dishes</button><br />
+            {displaySignatureDishes()}
         </>
     )
 }
 export default SlidingContent;
+

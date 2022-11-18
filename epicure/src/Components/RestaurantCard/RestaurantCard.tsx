@@ -1,13 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { Restaurant } from '../../Types/Types';
+import "./RestaurantCard.css";
 
-function RestaurantCard(props:{restaurants:Restaurant[]}){
-    const restaurants = props.restaurants;
+function RestaurantCard(props:{restaurant:Restaurant, showOwner:boolean}){
+    const navigate = useNavigate();
+    const restaurant = props.restaurant;
     return(
-        <div className="card">
-            {restaurants[0].name}<br/>
-            {restaurants[0].dishes[0].name}<br/>
-            {restaurants[0].owner}<br/>
-            {restaurants[0].picture}
+        <div className="card" onClick={()=>{navigate('./Restaurants/' + restaurant.name)}}>
+            <img src={restaurant.picture}/>
+            <p className='restautant-name'>{restaurant.name}</p><br/>
+            <p className='restaurant-owner'>{props.showOwner && restaurant.owner}<br/></p>
         </div>
     )
 

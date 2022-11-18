@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './Header.css';
-import logo from './Pictures/epicLogo.png';
-import searchIcon from './Pictures/searchFigma.png';
-import profileIcon from './Pictures/profileFigma.png';
-import bagIcon from './Pictures/bagFigma.png';
-import ham from './Pictures/HAMBUR.png';
-import exitLogo from './Pictures/exit.png';
+import logo from '../../Data/Pictures/epicLogo.png';
+import searchIcon from '../../Data/Pictures/searchFigma.png';
+import profileIcon from '../../Data/Pictures/profileFigma.png';
+import bagIcon from '../../Data/Pictures/bagFigma.png';
+import ham from '../../Data/Pictures/HAMBUR.png';
+import exitLogo from '../../Data/Pictures/exit.png';
 import Search from '../Search/Search';
 import Footer from '../Footer/Footer';
 
@@ -31,7 +31,7 @@ function Header() {
                         <button className='generic-button'>Chefs</button>
                     </li>
                     <hr/>
-                    <li>
+                    <li className='footer-li'>
                         <Footer />
                     </li>
                 </ul>

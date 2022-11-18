@@ -1,0 +1,40 @@
+.card {
+  margin-right: 20px;
+  background: #f9f4ea;
+  display: inline-block;
+}
+.restautant-name {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 2.67px;
+
+  text-transform: none;
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 16px 0px 0px 16px;
+}
+
+.restaurant-owner {
+  width: 225px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+
+  letter-spacing: 1.97px;
+  text-transform: none;
+  color: #000000;
+
+  margin: 0px 0px 16px 16px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}

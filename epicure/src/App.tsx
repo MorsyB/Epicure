@@ -8,9 +8,7 @@ import Footer from './Components/Footer/Footer';
 function App() {
   return (
     <>
-    <Header/>
     <Routes1/>
-    <Footer/>
     </>
     );
 }

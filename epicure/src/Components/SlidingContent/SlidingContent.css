@@ -1,10 +1,40 @@
 .slider {
   width: 100%;
-  height: 250px;
   display: flex;
   overflow-x: auto;
 }
-p {
+
+.sliding-div {
+  margin-left: 20px;
+}
+
+.signature-dish {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.show-all-button {
+  align-self: center;
+  justify-content: center;
+  background: #fff;
+  border: 0px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 35px;
+  /* identical to box height, or 219% */
+
+  text-align: right;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.div-title {
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
@@ -15,8 +45,7 @@ p {
   letter-spacing: 1.25px;
   text-transform: uppercase;
 }
+
 .card {
-  width: 300px;
   flex-shrink: 0;
-  height: 100%;
 }

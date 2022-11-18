@@ -1,7 +1,7 @@
 export interface Restaurant{
     name:string;
     owner:string;
-    dishes:Dish[];
+    dishesID:number[];
     picture:string;
 }
 
@@ -11,3 +11,11 @@ export interface Dish{
     ingredients:string[];
     picture:string;
 }
+
+export interface Chef{
+    name:string;
+    description:string;
+    restaurants:number[];
+    picture:string;
+}
+
