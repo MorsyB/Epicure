@@ -1,13 +1,15 @@
 import React from "react";
-import {Routes,Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
+import Restaurants from "./Restaurants/Restaurants";
 
 const Routes1 = () => {
-    return (
+  return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Homepage/>}/>
-        <Route path="*" element={<Homepage/>}/>
+        <Route index element={<Homepage />} />
+        <Route path="/Restaurants" element={<Restaurants />} />
+        <Route path="*" element={<Homepage />} />
       </Routes>
     </BrowserRouter>
   );

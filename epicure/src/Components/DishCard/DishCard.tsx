@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Dish } from "../../Types/Types";
 import shekel from '../../Data/Pictures/shekel.png';
+import "./DishCard.css";
 
 function DishCard(props: { dish: Dish }) {
     const navigate = useNavigate();
@@ -16,10 +17,10 @@ function DishCard(props: { dish: Dish }) {
                         {ingredient + ", "}
                     </>
                 })}
-                <br />
-                <br />
-            <img src={shekel} width="8px" />
-            {" " + dish.price}
+                <img className="dish-type" src={dish.dishType} />
+                <div className="price">
+                    <img className="shekel" src={shekel} width="8px" height="8px" /> {" " + dish.price}
+                </div>
             </p>
         </div>
     )

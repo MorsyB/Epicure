@@ -3,22 +3,25 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.chef-of-the-week img{
+  position: relative;
+}
 .chef-name {
   display: flex;
   position: absolute;
+  top: 68vw;
   justify-content: center;
-  top: 262px;
   background-color: #fafafa;
   opacity: 0.7;
   width: 100%;
-
+  
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 47px;
   /* identical to box height, or 261% */
-
   text-align: center;
   letter-spacing: 2.67px;
 

@@ -1,0 +1,12 @@
+.price {
+  display: flex;
+  flex-direction: row;
+}
+.shekel {
+  margin-top: 7px;
+  margin-right: 3px;
+}
+.dish-type{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

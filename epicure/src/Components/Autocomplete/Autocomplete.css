@@ -1,0 +1,29 @@
+.suggest li {
+  list-style-type: none;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  text-align: left;
+  letter-spacing: 1.29px;
+  margin-left: 20px;
+}
+
+.suggest-title {
+  text-align: left;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  margin-left: 20px;
+  letter-spacing: 1.29px;
+}
+
+.suggest {
+    margin-top: 30px;
+}

@@ -1,7 +1,7 @@
 .slider {
-  width: 100%;
+  width: 93%;
   display: flex;
-  overflow-x: auto;
+  align-items: center;
 }
 
 .sliding-div {

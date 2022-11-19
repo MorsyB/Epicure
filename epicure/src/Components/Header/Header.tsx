@@ -8,10 +8,12 @@ import ham from '../../Data/Pictures/HAMBUR.png';
 import exitLogo from '../../Data/Pictures/exit.png';
 import Search from '../Search/Search';
 import Footer from '../Footer/Footer';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 function Header() {
     const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
     const [popupToDisplay, setPopupToDisplay] = useState<string>("");
+    const navigate = useNavigate();
     const navMenu = () => {
         return (
             <div
@@ -25,7 +27,7 @@ function Header() {
                     src={isNavExpanded ? exitLogo : ham} />
                 <ul>
                     <li>
-                        <button className='generic-button'>Restaurants</button>
+                        <button onClick={()=>navigate('/Restaurants')} className='generic-button'>Restaurants</button>
                     </li>
                     <li>
                         <button className='generic-button'>Chefs</button>

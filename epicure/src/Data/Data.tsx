@@ -1,36 +1,44 @@
 import { Chef, Dish, Restaurant } from "../Types/Types";
 import restaurantPic from "./Pictures/claro.png";
 import chefIMG from "./Pictures/yossi.png"
+import spicy from "./Pictures/spicy-small.png";
+import vegan from "./Pictures/vegan-small.png";
+import vegetarian from "./Pictures/vegetarian-small.png";
 
 export const AllRestaurants: Array<Restaurant> = [
     {
         name: "Restaurant1",
         owner: "Chef1",
         dishesID: [1, 5, 6, 7],
+        hours:"10:00-22:00",
         picture: restaurantPic
     },
     {
         name: "Restaurant2",
         owner: "Chef2",
         dishesID: [1, 3, 7],
+        hours:"10:00-22:00",
         picture: restaurantPic
     },
     {
-        name: "Restaurant1",
+        name: "Restaurant3",
         owner: "Chef1",
         dishesID: [2, 3, 4],
+        hours:"10:00-22:00",
         picture: restaurantPic
     },
     {
-        name: "Restaurant1",
+        name: "Restaurant4",
         owner: "Chef1",
         dishesID: [4, 5, 6, 7],
+        hours:"10:00-22:00",
         picture: restaurantPic
     },
     {
-        name: "Restaurant1",
+        name: "Restaurant5",
         owner: "Chef1",
         dishesID: [1, 2, 3, 5],
+        hours:"10:00-22:00",
         picture: restaurantPic
     }
 ]
@@ -40,42 +48,49 @@ export const AllDishes: Array<Dish> = [
         name: "Dish1",
         ingredients: ["salt", "something-else", "paper", "sugar", "milk"],
         picture: restaurantPic,
+        dishType: spicy,
         price: 69
     },
     {
         name: "Dish2",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: vegan,
         price: 24
     },
     {
         name: "Dish3",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: vegetarian,
         price: 56
     },
     {
         name: "Dish4",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: spicy,
         price: 67
     },
     {
         name: "Dish5",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: spicy,
         price: 50
     },
     {
         name: "Dish6",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: vegan,
         price: 49
     },
     {
         name: "Dish7",
         ingredients: ["salt", "something-else"],
         picture: restaurantPic,
+        dishType: spicy,
         price: 35
     },
 

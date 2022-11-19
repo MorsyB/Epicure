@@ -8,23 +8,20 @@ import rightArrows from '../../Data/Pictures/right-arrows.png'
 import spicy from '../../Data/Pictures/spicy.png'
 import vegan from '../../Data/Pictures/vegan.png'
 import vegetarian from '../../Data/Pictures/vegetarian.png'
-import Slider from '../Slider/Slider';
+import SliderDiv from '../Slider/Slider';
 
 function SlidingContent() {
     const navigate = useNavigate();
 
     const displayPopularRestaurants = () => {
         return (
-            <>
-                <Slider title='popular restaurant in epicure:' button='Restaurants'/>
-            </>
+            <SliderDiv title='popular restaurant in epicure:' button='Restaurants' showOwner={true} />
         )
     };
 
     const displayDishes = () => {
-        return (<>
-            <Slider title='Signature Dish Of:' button='Dishes'/>
-        </>
+        return (
+            <SliderDiv title='Signature Dish Of:' button='Dishes' />
         )
     }
 
