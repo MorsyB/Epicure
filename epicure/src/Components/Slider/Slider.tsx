@@ -7,7 +7,7 @@ import DishCard from "../DishCard/DishCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Slider.css";
+import { ShowAllBtn, SliderTitle, SlidingDiv } from "./styles";
 
 function SliderDiv(props: { title: string, button: string, showOwner?: boolean }) {
     const navigate = useNavigate();
@@ -19,23 +19,25 @@ function SliderDiv(props: { title: string, button: string, showOwner?: boolean }
         dots: false,
         infinite: false,
         speed: 500,
+        arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
 
     };
     return (<>
-        <p className="div-title">{props.title}</p>
-        <Slider className="slider" {...settings}>
-            {isRestaurant && AllRestaurants.filter((restaurant, index: number) => { return (index < 3) }).map((restaurant: Restaurant) => {
-                return <RestaurantCard restaurant={restaurant} showOwner={showOwner} />
-            })}
-            {!isRestaurant && AllDishes.filter((dish, index: number) => { return (index < 3) }).map((dish: Dish) => {
-                return <DishCard dish={dish} />
-            })}
+        <SliderTitle> {props.title}</SliderTitle>
+        <SlidingDiv>
+            <Slider {...settings}>
+                {isRestaurant && AllRestaurants.filter((restaurant, index: number) => { return (index < 3) }).map((restaurant: Restaurant) => {
+                    return <RestaurantCard key={restaurant.name} restaurant={restaurant} showOwner={showOwner} />
+                })}
+                {!isRestaurant && AllDishes.filter((dish, index: number) => { return (index < 3) }).map((dish: Dish) => {
+                    return <DishCard key={dish.name} dish={dish} />
+                })}
 
-        </Slider>
-        <button className='show-all-button' onClick={() => { navigate("./" + props.button) }}>All {props.button} <img src={rightArrows} /></button><br />
-
+            </Slider>
+        </SlidingDiv>
+        <ShowAllBtn onClick={() => { navigate("./" + props.button) }}>All {props.button} <img src={rightArrows} /> </ShowAllBtn>
     </>)
 }
 export default SliderDiv;

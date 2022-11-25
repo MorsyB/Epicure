@@ -1,21 +1,23 @@
 import { Chef } from "../../Types/Types";
 import Slider from "../Slider/Slider";
-import './ChefOfTheWeek.css';
+import { ChefDescription, ChefOfTheWeekDiv, ChefOfTheWeekName, ChefOfTheWeekTitle, ChefPic, ChefPicDiv, ChefSlider } from "./styles";
 
 function ChefOfTheWeek(props: { chef: Chef }) {
     const chef = props.chef;
-    return (<div className="chef-of-the-week">
-        <p className="chef-title">Chef of the week</p>
-        <div>
-            <img width="100%" src={chef.picture} />
-            <p className="chef-name">
-                {chef.name}
-            </p>
-        </div>
-        <p className="chef-description">
-            {chef.description}
-        </p>
-        <Slider title="Chef of the week:" button="Restaurants" showOwner={false} />
-    </div>)
+    return (
+        <>
+            <ChefOfTheWeekDiv>
+                <ChefOfTheWeekTitle>Chef of the week</ChefOfTheWeekTitle>
+                <ChefPicDiv>
+                    <ChefPic width="100%" src={chef.picture} />
+                    <ChefOfTheWeekName>{chef.name}</ChefOfTheWeekName>
+                </ChefPicDiv>
+                <ChefDescription> {chef.description} </ChefDescription>
+            </ChefOfTheWeekDiv>
+            <ChefSlider>
+                <Slider title="Chef of the week:" button="Restaurants" showOwner={false} />
+            </ChefSlider>
+        </>
+    )
 }
 export default ChefOfTheWeek;

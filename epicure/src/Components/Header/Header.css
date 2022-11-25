@@ -1,20 +1,20 @@
 .navigation {
-    height: 50px;
-    width: 100%;
+    height: 46px;
+    width: 90%;
     display: flex;
     align-items: center;
     position: relative;
     background-color: #fafafa;
     color: black;
     z-index: 1;
+    padding-left: 5%;
+
 }
 
 .brand-name {
     text-decoration: none;
     color: black;
     font-size: 1.3rem;
-    margin-left: auto;
-    margin-right: auto;
     width: 33%;
     text-align: center;
 }
@@ -24,9 +24,7 @@
     width: 33%;
     margin-right: auto;
 }
-.navigation-menu img{
-  margin-left: 22px;
-}
+
 
 .navigation-menu ul {
     display: flex;
@@ -42,18 +40,11 @@
     width: 100%;
 }
 
-.logo img{
-    margin-left: auto;
-    margin-right: auto;
-}
 .right-side{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    
     width: 33%;
-}
-
-.right-side img{
-    margin-right: auto;
 }
 
 .popup{
@@ -67,10 +58,6 @@
     align-items: center;
 }
 
-h6{
-    margin-right: 50px;
-    margin-left: 50px;
-}
 
 hr{
   border: 1px solid #F2F2F2;
@@ -86,13 +73,13 @@ hr{
         position: absolute;
         flex-direction: column;
         top: 23px;
-        width: 100%;
+        left: 0px;
+        width: 100vw;
         background-color: #FFF;
       }
       .navigation-menu li {
         text-align: center;
         padding-left: 15px;
-        margin: 0;
       }
       .navigation-menu li a {
         color: black;

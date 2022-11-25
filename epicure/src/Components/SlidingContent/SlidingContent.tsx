@@ -1,14 +1,9 @@
-import RestaurantCard from '../RestaurantCard/RestaurantCard';
-import { AllDishes, AllRestaurants } from '../../Data/Data';
-import { Dish, Restaurant } from '../../Types/Types';
-import './SlidingContent.css';
 import { useNavigate } from "react-router-dom";
-import DishCard from '../DishCard/DishCard';
-import rightArrows from '../../Data/Pictures/right-arrows.png'
 import spicy from '../../Data/Pictures/spicy.png'
 import vegan from '../../Data/Pictures/vegan.png'
 import vegetarian from '../../Data/Pictures/vegetarian.png'
 import SliderDiv from '../Slider/Slider';
+import { DivText, DivTitle, SignatureDish, SlidingDiv } from './styles';
 
 function SlidingContent() {
     const navigate = useNavigate();
@@ -27,27 +22,27 @@ function SlidingContent() {
 
     const displaySignatureDishes = () => {
         return (
-            <div className='signature-dish'>
-                <p className="div-title">Signature Dish Of:</p>
+            <SignatureDish>
+                <DivTitle>Signature Dish Of:</DivTitle>
                 <img src={spicy} />
-                <p className="div-element">Spicy</p>
+                <DivText>Spicy</DivText>
                 <img src={vegan} />
-                <p className="div-element">Vegitarian</p>
+                <DivText>Vegitarian</DivText>
                 <img src={vegetarian} />
-                <p className="div-element">Vegan</p>
-            </div>
+                <DivText>Vegan</DivText>
+            </SignatureDish>
         )
     }
 
     return (
         <>
-            <div className='sliding-div'>
+        <SlidingDiv>
                 <br />
                 {displayPopularRestaurants()}
                 <br />
                 {displayDishes()}
                 <br />
-            </div>
+        </SlidingDiv>
             {displaySignatureDishes()}
         </>
     )

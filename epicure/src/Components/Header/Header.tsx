@@ -8,7 +8,8 @@ import ham from '../../Data/Pictures/HAMBUR.png';
 import exitLogo from '../../Data/Pictures/exit.png';
 import Search from '../Search/Search';
 import Footer from '../Footer/Footer';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { NavbarDiv, NavigationDiv } from './styles';
 
 function Header() {
     const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
@@ -22,20 +23,18 @@ function Header() {
                 }>
                 <img
                     onClick={() => {
-                        setIsNavExpanded(!isNavExpanded)
+                        setIsNavExpanded(!isNavExpanded);
                     }}
                     src={isNavExpanded ? exitLogo : ham} />
                 <ul>
                     <li>
-                        <button onClick={()=>navigate('/Restaurants')} className='generic-button'>Restaurants</button>
+                        <button onClick={() => navigate('/Restaurants')} className='generic-button'>Restaurants</button>
                     </li>
                     <li>
                         <button className='generic-button'>Chefs</button>
                     </li>
-                    <hr/>
-                    <li className='footer-li'>
-                        <Footer />
-                    </li>
+                    <hr />
+                    <Footer />
                 </ul>
             </div>
         )
@@ -44,10 +43,8 @@ function Header() {
 
         return (
             <>
-                <a href="/" className="brand-name">
-                    <img src={logo} alt='logo' />
-                </a>
-
+                <img onClick={() => navigate('/')} src={logo} alt='logo' />
+                
                 <div className='right-side'>
                     <img src={searchIcon} alt='search'
                         onClick={() => {
@@ -57,7 +54,6 @@ function Header() {
                     <img src={bagIcon} alt='bag' />
                 </div>
             </>
-
         )
     };
 
@@ -68,19 +64,15 @@ function Header() {
     const popup = () => {
 
         return (
-            <div className='popup'>
-                <img src={exitLogo} onClick={() => { setPopupToDisplay("") }} />
-                <Search />
-            </div>
-
+            <></>
         )
     }
     return (
-        <nav className="navigation">
+        <NavigationDiv>
             {navMenu()}
             {!isNavExpanded && navBar()}
             {displayPopup() && popup()}
-        </nav>
+        </NavigationDiv>
     );
 }
 export default Header;

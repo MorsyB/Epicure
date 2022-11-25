@@ -1,15 +1,10 @@
-.footer button{
+import styled from "styled-components";
+
+export const FooterBtn = styled.button`
   display: flex;
   flex-direction: column;
   text-align: left;
-}
-.footer{
-
-}
-
-.generic-button {
-  text-align: left;
-  width: 100%;
+  width: 90vw;
   padding-top: 20px;
   padding-bottom: 20px;
   font-family: "Helvetica Neue";
@@ -20,8 +15,9 @@
   /* identical to box height */
 
   letter-spacing: 1.92px;
-
+  margin-left:5%;
   background: #fff;
   border: 0px;
-
-}
+`
+export const FooterDiv = styled.div`
+`

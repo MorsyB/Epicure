@@ -1,28 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { Dish } from "../../Types/Types";
 import shekel from '../../Data/Pictures/shekel.png';
-import "./DishCard.css";
+import { Card, CardImg, CardOwner, CardTitle, CoinImg, DishTypeImg, PriceDiv } from "./styles";
 
 function DishCard(props: { dish: Dish }) {
     const navigate = useNavigate();
     const dish = props.dish;
     return (
-        <div className="card" onClick={() => { navigate('./Dishes/' + dish.name) }}>
-
-            <img src={dish.picture} />
-            <p className='restautant-name'>{dish.name}</p><br />
-            <p className="restaurant-owner">
+        <Card onClick={() => { navigate('./Dishes/' + dish.name) }}>
+            <CardImg width={"100%"} src={dish.picture} />
+            <CardTitle>{dish.name}</CardTitle>
+            <CardOwner>
                 {dish.ingredients.map((ingredient) => {
                     return <>
                         {ingredient + ", "}
                     </>
                 })}
-                <img className="dish-type" src={dish.dishType} />
-                <div className="price">
-                    <img className="shekel" src={shekel} width="8px" height="8px" /> {" " + dish.price}
-                </div>
-            </p>
-        </div>
+                <DishTypeImg src={dish.dishType} />
+                <PriceDiv>
+                    <CoinImg src={shekel} width="8px" height="8px" />{" " + dish.price}
+                </PriceDiv>
+            </CardOwner><br />
+
+        </Card>
     )
 
 }

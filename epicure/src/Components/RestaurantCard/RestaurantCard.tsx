@@ -1,17 +1,18 @@
+import { CardImg } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Restaurant } from '../../Types/Types';
-import "./RestaurantCard.css";
+import { Card, CardOwner, CardTitle } from './styles';
 
 function RestaurantCard(props:{restaurant:Restaurant, showOwner:boolean, className?:string}){
     const navigate = useNavigate();
     const restaurant = props.restaurant;
-    const className = props.className ? props.className : "card";
+
     return(
-        <div className={className} onClick={()=>{navigate('/Restaurants/' + restaurant.name)}}>
-            <img src={restaurant.picture}/>
-            <p className='restautant-name'>{restaurant.name}</p><br/>
-            <p className='restaurant-owner'>{props.showOwner && restaurant.owner}<br/></p>
-        </div>
+        <Card onClick={()=>{navigate('/Restaurants/' + restaurant.name)}}>
+            <CardImg width={"100%"} src={restaurant.picture}/>
+            <CardTitle>{restaurant.name}</CardTitle>
+            <CardOwner>{props.showOwner && restaurant.owner}</CardOwner><br/>
+        </Card>
     )
 
 }

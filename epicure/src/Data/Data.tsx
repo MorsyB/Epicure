@@ -10,35 +10,35 @@ export const AllRestaurants: Array<Restaurant> = [
         name: "Restaurant1",
         owner: "Chef1",
         dishesID: [1, 5, 6, 7],
-        hours:"10:00-22:00",
+        hours: "10:00-22:00",
         picture: restaurantPic
     },
     {
         name: "Restaurant2",
         owner: "Chef2",
         dishesID: [1, 3, 7],
-        hours:"10:00-22:00",
+        hours: "10:00-22:00",
         picture: restaurantPic
     },
     {
         name: "Restaurant3",
         owner: "Chef1",
         dishesID: [2, 3, 4],
-        hours:"10:00-22:00",
+        hours: "10:00-22:00",
         picture: restaurantPic
     },
     {
         name: "Restaurant4",
         owner: "Chef1",
         dishesID: [4, 5, 6, 7],
-        hours:"10:00-22:00",
+        hours: "10:00-22:00",
         picture: restaurantPic
     },
     {
         name: "Restaurant5",
         owner: "Chef1",
         dishesID: [1, 2, 3, 5],
-        hours:"10:00-22:00",
+        hours: "10:00-22:00",
         picture: restaurantPic
     }
 ]
@@ -123,3 +123,11 @@ export const AllChefs: Array<Chef> = [
 
 
 ]
+
+export const Colors = {
+    black: "#000",
+    grey: "#979797",
+    lightYellow: "#F9F4EA",
+    yellow: "#E19D1A",
+    lightGrey: "#FAFAFA"
+}
