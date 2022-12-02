@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
+import NewHeader from "../../Components/Header/Header";
 import RestaurantCard from "../../Components/RestaurantCard/RestaurantCard";
 import { AllRestaurants } from "../../Data/Data";
 import { Restaurant } from "../../Types/Types";
@@ -48,7 +49,7 @@ function Restaurants() {
     }
 
     return (<>
-        <Header />
+        <NewHeader />
         <RestaurantsDiv>
             <RestaurantsTitle>restaurants</RestaurantsTitle>
             {filters()}

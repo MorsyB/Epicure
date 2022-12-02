@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import spicy from '../../Data/Pictures/spicy.png'
-import vegan from '../../Data/Pictures/vegan.png'
-import vegetarian from '../../Data/Pictures/vegetarian.png'
+import spicy from '../../Data/Pictures/spicyBig.svg'
+import vegan from '../../Data/Pictures/veganBig.svg'
+import vegetarian from '../../Data/Pictures/vegetarianBig.svg'
 import SliderDiv from '../Slider/Slider';
 import { DivText, DivTitle, SignatureDish, SlidingDiv } from './styles';
 

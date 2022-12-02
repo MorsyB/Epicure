@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AllDishes, AllRestaurants } from "../../Data/Data";
 import { Restaurant, Dish } from "../../Types/Types";
@@ -8,13 +8,30 @@ function Autocomplete() {
     const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
-    const mapSearchResault = (element: Restaurant | Dish, type: string) => { return <li onClick={() => { navigate('./' + element) }}> {element.name} </li> }
+    const wrapperRef = useRef<any>(null);
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event: any) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setShowSuggestion(false);
+            }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [wrapperRef]);
+
     const suggestions = () => {
         return (
-            <SuggestDiv>
+            <SuggestDiv ref={wrapperRef}>
                 <ul>
                     <SuggestTitle>
-                        Restaurants:
+                        Restaurants:-
                     </SuggestTitle>
                     {AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
                 </ul>
@@ -30,7 +47,7 @@ function Autocomplete() {
         <HeroDiv>
             <HeroSearchDiv>
                 <HeroLabel>Epicure works with the top chef restaurants in Tel Aviv</HeroLabel>
-                <HeroInput onFocus={()=>setShowSuggestion(true)} onBlur={()=>setShowSuggestion(false)} onChange={(e) => { setSearchText(e.target.value) }} type="text" placeholder={"Search for restaurant cuisine, chef"} />
+                <HeroInput onFocus={() => setShowSuggestion(true)} onChange={(e) => { setSearchText(e.target.value) }} type="text" placeholder={"Search for restaurant cuisine, chef"} />
                 {showSuggestion && searchText !== "" && suggestions()}
             </HeroSearchDiv>
         </HeroDiv>

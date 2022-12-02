@@ -5,6 +5,8 @@ interface ButtonProps {
 }
 
 export const FiltersDiv = styled.div`
+margin-left: 5%;
+margin-right: 2%;
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
@@ -12,7 +14,6 @@ export const FiltersDiv = styled.div`
 export const FilterButton = styled.button<ButtonProps>`
     border: 0px;
     background: #fff;
-    font-family: "Helvetica Neue";
     font-style: normal;
     font-weight: ${props => props.clickedBTN ? "600" : "400"};
     font-size: 17px;
@@ -22,11 +23,13 @@ export const FilterButton = styled.button<ButtonProps>`
 `
 
 export const CardDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 `
 
 export const RestaurantsTitle = styled.h1`
-    font-family: "Helvetica Neue";
     font-style: normal;
     font-weight: 200;
     font-size: 18px;
@@ -35,10 +38,11 @@ export const RestaurantsTitle = styled.h1`
 
     letter-spacing: 1.92px;
     text-transform: uppercase;
+    margin-left: 5%;
+    
 
 `
 
 export const RestaurantsDiv = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  
 `

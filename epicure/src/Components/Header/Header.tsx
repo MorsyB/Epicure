@@ -1,78 +1,144 @@
-import { useState } from 'react';
-import './Header.css';
-import logo from '../../Data/Pictures/epicLogo.png';
-import searchIcon from '../../Data/Pictures/searchFigma.png';
-import profileIcon from '../../Data/Pictures/profileFigma.png';
-import bagIcon from '../../Data/Pictures/bagFigma.png';
-import ham from '../../Data/Pictures/HAMBUR.png';
-import exitLogo from '../../Data/Pictures/exit.png';
-import Search from '../Search/Search';
+import { useEffect, useRef, useState } from 'react';
+import { logo, bagIcon, exitLogo, ham, profileIcon, searchIcon } from "../../Data/Icons";
 import Footer from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import { NavbarDiv, NavigationDiv } from './styles';
+import { ButtonDiv, CenterDiv, DividingHr, EmptyBag, HamMenu, LeftsideDiv, NavbarDiv, NavInput, NavSuggestion, ProfilePopup, RightsideDiv, SearchPopup, SearchTitle } from './styles';
+import { FooterBtn } from '../Footer/styles';
+import { SuggestLi, SuggestTitle } from '../Autocomplete/styles';
+import { Dish, Restaurant } from '../../Types/Types';
+import { AllDishes, AllRestaurants } from '../../Data/Data';
+import Profile from '../Profile/Profile';
+import { BagDiv } from '../Bag/styles';
+import bag from "../../Data/Pictures/bag.svg"
+
 
 function Header() {
-    const [isNavExpanded, setIsNavExpanded] = useState<boolean>(false);
-    const [popupToDisplay, setPopupToDisplay] = useState<string>("");
+
+    const [searchText, setSearchText] = useState<string>("");
+    const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
+    const [showPopup, setShowPopup] = useState<Array<boolean>>([false, false, false, false, false]);
     const navigate = useNavigate();
-    const navMenu = () => {
+    const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
+    const [showBag, setShowBag] = useState<boolean>(true);
+    const wrapperRef = useRef<any>(null);
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event: any) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setShowPopup([false, false, false, false, false]);
+            }
+        }
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [wrapperRef]);
+
+    const showNav = () => {
+        return !showPopup[0];
+    }
+    const suggestions = () => {
         return (
-            <div
-                className={
-                    isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
-                }>
-                <img
-                    onClick={() => {
-                        setIsNavExpanded(!isNavExpanded);
-                    }}
-                    src={isNavExpanded ? exitLogo : ham} />
+            <NavSuggestion>
                 <ul>
-                    <li>
-                        <button onClick={() => navigate('/Restaurants')} className='generic-button'>Restaurants</button>
-                    </li>
-                    <li>
-                        <button className='generic-button'>Chefs</button>
-                    </li>
-                    <hr />
-                    <Footer />
+                    <SuggestTitle>
+                        Restaurants:
+                    </SuggestTitle>
+                    {AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
                 </ul>
-            </div>
-        )
-    };
-    const navBar = () => {
+                <ul>
+                    <SuggestTitle>Dishes:</SuggestTitle>
+                    {AllDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> })}
 
-        return (
-            <>
-                <img onClick={() => navigate('/')} src={logo} alt='logo' />
-                
-                <div className='right-side'>
-                    <img src={searchIcon} alt='search'
-                        onClick={() => {
-                            setPopupToDisplay("search")
-                        }} />
-                    <img src={profileIcon} alt='profile' />
-                    <img src={bagIcon} alt='bag' />
-                </div>
-            </>
+                </ul>
+            </NavSuggestion>
         )
-    };
-
-    const displayPopup = () => {
-        return popupToDisplay !== '';
+    }
+    const searchPopup = () => {
+        return <>
+            <SearchTitle>
+                search
+            </SearchTitle>
+            <SearchPopup>
+                <NavInput onFocus={() => setShowSuggestion(true)} onChange={(e) => { setSearchText(e.target.value) }} type="text" placeholder={"Search for restaurant cuisine, chef"} />
+                {showSuggestion && searchText !== "" && suggestions()}
+            </SearchPopup>
+        </>
     }
 
-    const popup = () => {
+    const profilePopup = () => {
+        return <>
 
-        return (
-            <></>
-        )
+            <ProfilePopup>
+                <Profile />
+            </ProfilePopup>
+        </>
+
+    }
+
+    const hamMenu = () => {
+        return <HamMenu>
+            <ButtonDiv>
+                <FooterBtn onClick={() => navigate('/Restaurants')}>Restaurants</FooterBtn>
+                <FooterBtn onClick={() => navigate('/Chefs')}>Chefs</FooterBtn>
+            </ButtonDiv>
+            <DividingHr />
+            <Footer />
+        </HamMenu>
+    }
+
+    const showLeftDiv = () => {
+        return <LeftsideDiv>
+            <img onClick={() => {
+                if (!showPopup[0]) {
+                    setShowPopup([true, true, false, false, false]);
+                } else {
+                    setShowPopup([false, false, false, false, false])
+                }
+            }} src={showPopup[0] ? exitLogo : ham} />
+            {showPopup[1] && hamMenu()}
+        </LeftsideDiv>
+    };
+    const showRightDiv = () => {
+        return <RightsideDiv>
+            <img onClick={() => {
+                setShowPopup([true, false, true, false, false]);
+            }} src={searchIcon} />
+            <img onClick={() => {
+                setShowPopup([true, false, false, true, false]);
+            }} src={profileIcon} />
+            <img onClick={() => {
+                setShowPopup([false, false, false, false, true]);
+            }} src={bagIcon} />
+        </RightsideDiv>
+    }
+    const centerDiv = () => {
+        return <CenterDiv>
+            <img onClick={() => navigate('/')} src={logo} />
+        </CenterDiv>
+    }
+
+    const bagPopup = () => {
+        return <>
+            <BagDiv ref={wrapperRef}>
+                <img src={bag} />
+                <EmptyBag>Your bag is empty</EmptyBag>
+            </BagDiv>
+        </>
     }
     return (
-        <NavigationDiv>
-            {navMenu()}
-            {!isNavExpanded && navBar()}
-            {displayPopup() && popup()}
-        </NavigationDiv>
-    );
+        <NavbarDiv>
+            {showLeftDiv()}
+            {showNav() && centerDiv()}
+            {showNav() && showRightDiv()}
+            {showPopup[2] && searchPopup()}
+            {showPopup[3] && profilePopup()}
+            {showPopup[4] && bagPopup()}
+
+        </NavbarDiv>)
 }
 export default Header;

@@ -1,9 +1,9 @@
 import { Chef, Dish, Restaurant } from "../Types/Types";
-import restaurantPic from "./Pictures/claro.png";
-import chefIMG from "./Pictures/yossi.png"
-import spicy from "./Pictures/spicy-small.png";
-import vegan from "./Pictures/vegan-small.png";
-import vegetarian from "./Pictures/vegetarian-small.png";
+import restaurantPic from "./Pictures/claro.svg";
+import chefIMG from "./Pictures/yossi.svg"
+import spicy from "./Pictures/spicySmall.svg";
+import vegan from "./Pictures/veganSmall.svg";
+import vegetarian from "./Pictures/vegetarianSmall.svg";
 
 export const AllRestaurants: Array<Restaurant> = [
     {

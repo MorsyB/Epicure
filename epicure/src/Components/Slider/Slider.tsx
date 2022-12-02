@@ -20,7 +20,7 @@ function SliderDiv(props: { title: string, button: string, showOwner?: boolean }
         infinite: false,
         speed: 500,
         arrows: false,
-        slidesToShow: 1,
+        slidesToShow: 1.5,
         slidesToScroll: 1,
 
     };

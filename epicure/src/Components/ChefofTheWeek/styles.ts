@@ -7,7 +7,6 @@ export const ChefOfTheWeekDiv = styled.div`
 `
 
 export const ChefOfTheWeekTitle = styled.h2`
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 18px;
@@ -26,7 +25,6 @@ export const ChefOfTheWeekName = styled.h3`
   opacity: 0.7;
   width: 100%;
   
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -43,7 +41,6 @@ export const ChefOfTheWeekName = styled.h3`
 export const ChefPicDiv = styled.div`
 ` 
 export const ChefDescription = styled.p`
-font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 18px;

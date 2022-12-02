@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import heroImg from '../../Data/Pictures/hero-picture.png';
-import searchFigma from "../../Data/Pictures/searchFigma.png";
+import search from "../../Data/Pictures/search.svg";
 
 export const SuggestDiv = styled.div`
   position: absolute;
@@ -13,7 +13,6 @@ export const SuggestDiv = styled.div`
 `
 export const SuggestTitle = styled.h2`
   text-align: left;
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 14px;
@@ -25,7 +24,6 @@ export const SuggestTitle = styled.h2`
 `
 export const SuggestLi = styled.li`
   list-style-type: none;
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -58,7 +56,6 @@ export const HeroSearchDiv = styled.div`
 `
 
 export const HeroLabel = styled.label`
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 24px;
@@ -75,7 +72,7 @@ export const HeroInput = styled.input`
   top: 200px;
   width: 80%;
   height: 30px;
-  background: url(${searchFigma}) no-repeat scroll 10px;
+  background: url(${search}) no-repeat scroll 10px;
   text-align: center;
   border-radius: 4px;
   border: 0.5px solid #000000;

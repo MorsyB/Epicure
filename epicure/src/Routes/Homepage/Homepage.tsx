@@ -5,7 +5,7 @@ import { AllChefs } from '../../Data/Data';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import Autocomplete from '../../Components/Autocomplete/Autocomplete';
-import NewHeader from '../../Components/NewHeader/NewHeader';
+import NewHeader from '../../Components/Header/Header';
 import { HompageDive } from './styles';
 
 function Homepage() {

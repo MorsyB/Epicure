@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 export const Card = styled.div`
-    width: 100%;
+    width: 90%;
     display: flex;
     background: #f9f4ea;
     display: inline-block;
@@ -21,7 +21,6 @@ export const CardTitle = styled.h3`
 `
 export const CardOwner = styled.h3`
       width: 225px;
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 16px;
@@ -29,7 +28,7 @@ export const CardOwner = styled.h3`
   /* identical to box height, or 125% */
   
   letter-spacing: 1.97px;
-  margin: 0px 0px 16px 16px;
+  margin: 0px 0px 0px 16px;
 `
 
 export const DishTypeImg = styled.img`

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SliderTitle = styled.h2`
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 18px;
@@ -20,7 +19,6 @@ export const ShowAllBtn = styled.button`
   justify-content: center;
   background: #fff;
   border: 0px;
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

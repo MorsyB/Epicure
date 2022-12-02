@@ -7,7 +7,6 @@ export const AboutUsDiv = styled.div`
   background: #FAFAFA;
 `
 export const AboutUsText = styled.p`
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 18px;
@@ -17,7 +16,6 @@ export const AboutUsText = styled.p`
   `
 
 export const AboutUsTitle = styled.h2`
-font-family: "Helvetica Neue";
 font-style: normal;
 font-weight: 200;
 font-size: 18px;

@@ -7,7 +7,6 @@ export const FooterBtn = styled.button`
   width: 90vw;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 200;
   font-size: 18px;

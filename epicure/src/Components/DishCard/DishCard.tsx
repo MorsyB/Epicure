@@ -12,9 +12,9 @@ function DishCard(props: { dish: Dish }) {
             <CardTitle>{dish.name}</CardTitle>
             <CardOwner>
                 {dish.ingredients.map((ingredient) => {
-                    return <>
+                    return <p>
                         {ingredient + ", "}
-                    </>
+                    </p>
                 })}
                 <DishTypeImg src={dish.dishType} />
                 <PriceDiv>
