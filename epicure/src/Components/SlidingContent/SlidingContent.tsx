@@ -40,7 +40,11 @@ function SlidingContent() {
                 <br />
                 {displayPopularRestaurants()}
                 <br />
+                <br />
+                <br />
                 {displayDishes()}
+                <br />
+                <br />
                 <br />
         </SlidingDiv>
             {displaySignatureDishes()}

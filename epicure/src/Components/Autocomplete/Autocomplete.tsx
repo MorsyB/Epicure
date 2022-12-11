@@ -8,6 +8,8 @@ function Autocomplete() {
     const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
+    const filteredRestaurants = () => { return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
+    const filteredDishes = () => { return AllDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> }) }
     const wrapperRef = useRef<any>(null);
     useEffect(() => {
         /**
@@ -30,15 +32,12 @@ function Autocomplete() {
         return (
             <SuggestDiv ref={wrapperRef}>
                 <ul>
-                    <SuggestTitle>
-                        Restaurants:-
-                    </SuggestTitle>
-                    {AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
+                    {AllRestaurants.filter(filterLists).length !== 0 && <SuggestTitle>Restaurants:-</SuggestTitle>}
+                    {filteredRestaurants()}
                 </ul>
                 <ul>
-                    <SuggestTitle>Dishes:</SuggestTitle>
-                    {AllDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> })}
-
+                    {AllDishes.filter(filterLists).length !== 0 && <SuggestTitle>Dishes:</SuggestTitle>}
+                    {filteredDishes()}
                 </ul>
             </SuggestDiv>
         )

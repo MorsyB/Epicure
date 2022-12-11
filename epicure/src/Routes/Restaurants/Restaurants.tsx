@@ -4,14 +4,15 @@ import Header from "../../Components/Header/Header";
 import NewHeader from "../../Components/Header/Header";
 import RestaurantCard from "../../Components/RestaurantCard/RestaurantCard";
 import { AllRestaurants } from "../../Data/Data";
+import { isNewRestaurant, isOpenNow } from "../../Helpers/Helpers";
 import { Restaurant } from "../../Types/Types";
 import { CardDiv, FilterButton, FiltersDiv, RestaurantsDiv, RestaurantsTitle } from "./styles";
 
 function Restaurants() {
     const [restaurantsToDisplay, setRestaurantsToDisplay] = useState<Array<Restaurant>>(AllRestaurants);
-    const openNow = AllRestaurants.filter((rest, i) => { return i < 2; });
+    const openNow = AllRestaurants.filter((rest, i) => { return isOpenNow(rest); });
     const mostPopular = AllRestaurants.filter((rest, i) => { return i < 1; });
-    const newRestaurants = AllRestaurants.filter((rest, i) => { return i === 4; });
+    const newRestaurants = AllRestaurants.filter((rest, i) => { return isNewRestaurant(rest); });
 
     const [clickedButton, setClickedButton] = useState<Array<boolean>>([true, false, false, false]);
     const switchToClicked = (index: number) => {

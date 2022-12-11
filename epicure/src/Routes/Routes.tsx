@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
 import Restaurants from "./Restaurants/Restaurants";

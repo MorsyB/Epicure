@@ -19,8 +19,8 @@ function Header() {
     const [showPopup, setShowPopup] = useState<Array<boolean>>([false, false, false, false, false]);
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
-    const [showBag, setShowBag] = useState<boolean>(true);
     const wrapperRef = useRef<any>(null);
+    const filteredRestaurants = () => {return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
     useEffect(() => {
         /**
          * Alert if clicked on outside of element
@@ -45,10 +45,8 @@ function Header() {
         return (
             <NavSuggestion>
                 <ul>
-                    <SuggestTitle>
-                        Restaurants:
-                    </SuggestTitle>
-                    {AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
+                    {AllRestaurants.filter(filterLists) && <SuggestTitle>Restaurants:</SuggestTitle>}
+                    {filteredRestaurants()}
                 </ul>
                 <ul>
                     <SuggestTitle>Dishes:</SuggestTitle>

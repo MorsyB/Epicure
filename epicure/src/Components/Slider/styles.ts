@@ -6,13 +6,12 @@ export const SliderTitle = styled.h2`
   font-size: 18px;
   line-height: 24px;
   /* identical to box height, or 133% */
-
-  letter-spacing: 1.25px;
   text-transform: uppercase;
   `
 
 export const SlidingDiv = styled.div`
  width: 100%;
+ margin-bottom: 18px;
 `
 export const ShowAllBtn = styled.button`
   align-self: center;

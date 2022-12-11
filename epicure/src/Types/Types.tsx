@@ -2,8 +2,11 @@ export interface Restaurant{
     name:string;
     owner:string;
     dishesID:number[];
-    hours:string;
+    openingHours:string;
+    closingHours:string;
     picture:string;
+    visits:number;
+    date:string;
 }
 
 export interface Dish{

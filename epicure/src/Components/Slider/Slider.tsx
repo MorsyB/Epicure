@@ -13,6 +13,7 @@ function SliderDiv(props: { title: string, button: string, showOwner?: boolean }
     const navigate = useNavigate();
     const isRestaurant = props.button === 'Restaurants';
     let showOwner = false;
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     if (props.showOwner === true)
         showOwner = true;
     const settings = {
@@ -20,7 +21,7 @@ function SliderDiv(props: { title: string, button: string, showOwner?: boolean }
         infinite: false,
         speed: 500,
         arrows: false,
-        slidesToShow: 1.5,
+        slidesToShow: vw/270,
         slidesToScroll: 1,
 
     };

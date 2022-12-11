@@ -45,6 +45,7 @@ export const HeroDiv = styled.div`
 
 export const HeroSearchDiv = styled.div`
   width: 90%;
+  max-width: 350px;
   height: 50%;
   background: rgb(243, 240, 240);
   opacity: 0.9;
@@ -71,6 +72,7 @@ export const HeroInput = styled.input`
   position: absolute;
   top: 200px;
   width: 80%;
+  max-width: 310px;
   height: 30px;
   background: url(${search}) no-repeat scroll 10px;
   text-align: center;

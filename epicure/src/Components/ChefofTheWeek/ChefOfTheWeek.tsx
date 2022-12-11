@@ -6,6 +6,7 @@ function ChefOfTheWeek(props: { chef: Chef }) {
     const chef = props.chef;
     return (
         <>
+            <br/>
             <ChefOfTheWeekDiv>
                 <ChefOfTheWeekTitle>Chef of the week</ChefOfTheWeekTitle>
                 <ChefPicDiv>
@@ -17,6 +18,8 @@ function ChefOfTheWeek(props: { chef: Chef }) {
             <ChefSlider>
                 <Slider title="Chef of the week:" button="Restaurants" showOwner={false} />
             </ChefSlider>
+            <br/>
+            <br/>
         </>
     )
 }
