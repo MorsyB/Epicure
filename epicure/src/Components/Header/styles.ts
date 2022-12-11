@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import search from "../../Data/Pictures/search.svg";
 
+
+export const NavbarMargin = styled.div`
+    height: 46px;
+`
 export const NavbarDiv = styled.nav`
+    position: fixed;
+    width: 90%;
     height: 46px;
     padding-left: 5vw;
     padding-right: 5vw;

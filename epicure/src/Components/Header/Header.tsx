@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { logo, bagIcon, exitLogo, ham, profileIcon, searchIcon } from "../../Data/Icons";
 import Footer from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import { ButtonDiv, CenterDiv, DividingHr, EmptyBag, HamMenu, LeftsideDiv, NavbarDiv, NavInput, NavSuggestion, ProfilePopup, RightsideDiv, SearchPopup, SearchTitle } from './styles';
+import { ButtonDiv, CenterDiv, DividingHr, EmptyBag, HamMenu, LeftsideDiv, NavbarDiv, NavbarMargin, NavInput, NavSuggestion, ProfilePopup, RightsideDiv, SearchPopup, SearchTitle } from './styles';
 import { FooterBtn } from '../Footer/styles';
 import { SuggestLi, SuggestTitle } from '../Autocomplete/styles';
 import { Dish, Restaurant } from '../../Types/Types';
@@ -20,7 +20,7 @@ function Header() {
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
     const wrapperRef = useRef<any>(null);
-    const filteredRestaurants = () => {return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> })}
+    const filteredRestaurants = () => { return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
     useEffect(() => {
         /**
          * Alert if clicked on outside of element
@@ -128,7 +128,7 @@ function Header() {
             </BagDiv>
         </>
     }
-    return (
+    return (<>
         <NavbarDiv>
             {showLeftDiv()}
             {showNav() && centerDiv()}
@@ -136,7 +136,9 @@ function Header() {
             {showPopup[2] && searchPopup()}
             {showPopup[3] && profilePopup()}
             {showPopup[4] && bagPopup()}
-
-        </NavbarDiv>)
+        </NavbarDiv>
+        <NavbarMargin />
+    </>
+    )
 }
 export default Header;
