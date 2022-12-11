@@ -6,6 +6,7 @@ export const SuggestDiv = styled.div`
   position: absolute;
   background: #fafafa;
   width: 80%;
+  max-width: 300px;
   max-height: 150px;
   margin-top: 120px;
   overflow: scroll;
