@@ -6,8 +6,10 @@ import { Card, CardOwner, CardTitle } from './styles';
 function RestaurantCard(props:{restaurant:Restaurant, showOwner:boolean, className?:string}){
     const navigate = useNavigate();
     const restaurant = props.restaurant;
+    const getVW = window.innerWidth;
     window.onresize = () => {
-        window.location.reload();
+        if(window.innerWidth !== getVW)
+            window.location.reload();
       }
     return(
         <Card onClick={()=>{navigate('/Restaurants/' + restaurant.name)}}>
