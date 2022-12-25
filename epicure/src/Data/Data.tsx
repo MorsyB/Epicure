@@ -1,6 +1,6 @@
 import { Chef, Dish, Restaurant } from "../Types/Types";
 import restaurantPic from "./Pictures/claro.svg";
-import chefIMG from "./Pictures/yossi.svg"
+import chefIMG from "./Pictures/yossi1.svg"
 import spicy from "./Pictures/spicySmall.svg";
 import vegan from "./Pictures/veganSmall.svg";
 import vegetarian from "./Pictures/vegetarianSmall.svg";
@@ -50,6 +50,16 @@ export const AllRestaurants: Array<Restaurant> = [
     },
     {
         name: "Restaurant5",
+        owner: "Chef1",
+        dishesID: [1, 2, 3, 5],
+        openingHours: "18:00",
+        closingHours:"02:00",
+        picture: restaurantPic,
+        visits: 22,
+        date: '7/12/2022'
+    },
+    {
+        name: "Restaurant6",
         owner: "Chef1",
         dishesID: [1, 2, 3, 5],
         openingHours: "18:00",

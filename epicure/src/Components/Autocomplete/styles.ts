@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import heroImg from '../../Data/Pictures/hero-picture.png';
+import heroImg from '../../Data/Pictures/hero-picture.svg';
 import search from "../../Data/Pictures/search.svg";
 
 export const SuggestDiv = styled.div`
@@ -37,7 +37,9 @@ export const SuggestLi = styled.li`
 `
 export const HeroDiv = styled.div`
   background-image: url(${heroImg});
+  
   width: 100%;
+  background-size: cover;
   height: 273px;
   display: flex;
   align-items: center;

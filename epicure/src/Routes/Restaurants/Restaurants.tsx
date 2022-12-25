@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import NewHeader from "../../Components/Header/Header";
@@ -6,6 +6,7 @@ import RestaurantCard from "../../Components/RestaurantCard/RestaurantCard";
 import { AllRestaurants } from "../../Data/Data";
 import { isNewRestaurant, isOpenNow } from "../../Helpers/Helpers";
 import { Restaurant } from "../../Types/Types";
+import RestaurantsDesktop from "./RestaurantsDesktop/RestaurantsDesktop";
 import { CardDiv, FilterButton, FiltersDiv, RestaurantsDiv, RestaurantsTitle } from "./styles";
 
 function Restaurants() {
@@ -13,8 +14,21 @@ function Restaurants() {
     const openNow = AllRestaurants.filter((rest, i) => { return isOpenNow(rest); });
     const mostPopular = AllRestaurants.filter((rest, i) => { return i < 1; });
     const newRestaurants = AllRestaurants.filter((rest, i) => { return isNewRestaurant(rest); });
-
     const [clickedButton, setClickedButton] = useState<Array<boolean>>([true, false, false, false]);
+    const [width, setWindowWidth] = useState(0)
+    useEffect(() => { 
+ 
+      updateDimensions();
+ 
+      window.addEventListener('resize', updateDimensions);
+      return () => 
+        window.removeEventListener('resize',updateDimensions);
+     }, [])
+     const updateDimensions = () => {
+       const width = window.innerWidth
+       setWindowWidth(width)
+     }
+
     const switchToClicked = (index: number) => {
         let arr: Array<boolean> = [false, false, false, false];
         arr[index] = true;
@@ -50,6 +64,7 @@ function Restaurants() {
     }
 
     return (<>
+    {width<800?<>
         <NewHeader />
         <RestaurantsDiv>
             <RestaurantsTitle>restaurants</RestaurantsTitle>
@@ -57,6 +72,7 @@ function Restaurants() {
             {displayRestaurants()}
         </RestaurantsDiv>
             <Footer />
+    </>:<RestaurantsDesktop/>}
     </>)
 }
 export default Restaurants;

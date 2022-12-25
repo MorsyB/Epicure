@@ -31,18 +31,27 @@ export function isOpenNow(restaurant: Restaurant) {
             return false
         if (date.getHours() == restOpenHoursNum[0] && date.getMinutes() < restOpenHoursNum[1])
             return false;
-        }else{
-            if (date.getHours() > restOpenHoursNum[0])
-                return true
-            if (date.getHours() == restOpenHoursNum[0] && date.getMinutes() > restOpenHoursNum[1])
-                return true;
-            if (date.getHours() < restCloseHoursNum[0])
-                return true
-            if (date.getHours() == restCloseHoursNum[0] && date.getMinutes() < restCloseHoursNum[1])
-                return true;
+    } else {
+        if (date.getHours() > restOpenHoursNum[0])
+            return true
+        if (date.getHours() == restOpenHoursNum[0] && date.getMinutes() > restOpenHoursNum[1])
+            return true;
+        if (date.getHours() < restCloseHoursNum[0])
+            return true
+        if (date.getHours() == restCloseHoursNum[0] && date.getMinutes() < restCloseHoursNum[1])
+            return true;
 
-            return false;
+        return false;
     }
 
     return true
 }
+
+export const filtersArray = [[true, false, false, false, false],
+[false, true, false, false, false],
+[false, false, true, false, false],
+[false, false, false, true, false],
+[true, false, false, false, true]]
+export const filtersArrayChefs = [[true, false, false],
+[false, true, false],
+[false, false, true]]

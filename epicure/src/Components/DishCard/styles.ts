@@ -1,4 +1,3 @@
-import { Props } from "react-input-suggestions";
 import styled from "styled-components";
 
 

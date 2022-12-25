@@ -7,10 +7,11 @@ function RestaurantCard(props:{restaurant:Restaurant, showOwner:boolean, classNa
     const navigate = useNavigate();
     const restaurant = props.restaurant;
     const getVW = window.innerWidth;
-    window.onresize = () => {
-        if(window.innerWidth !== getVW)
-            window.location.reload();
-      }
+    if(getVW < 800)
+        window.onresize = () => {
+            if(window.innerWidth !== getVW)
+                window.location.reload();
+        }
     return(
         <Card onClick={()=>{navigate('/Restaurants/' + restaurant.name)}}>
             <CardImg width={"100%"} src={restaurant.picture}/>
