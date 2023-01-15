@@ -1,6 +1,6 @@
 export interface Restaurant{
     name:string;
-    owner:string;
+    chef:string;
     dishesID:number[];
     openingHours:string;
     closingHours:string;
@@ -12,15 +12,19 @@ export interface Restaurant{
 export interface Dish{
     name:string;
     price:number;
-    ingredients:string[];
+    restaurant:string;
+    about:string;
+    dishMenu:string;
     dishType:string;
-    picture:string;
+    img:string;
+    visits:number;
 }
 
 export interface Chef{
     name:string;
     description:string;
-    restaurants:number[];
-    picture:string;
+    restaurants:any[];
+    img:string;
+    visits:number;
 }
 

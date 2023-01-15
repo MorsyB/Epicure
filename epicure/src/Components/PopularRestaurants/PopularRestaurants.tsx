@@ -6,20 +6,23 @@ import spicy from "../../Data/Pictures/spicyBig.svg"
 import vegan from "../../Data/Pictures/veganBig.svg"
 import vegetarian from "../../Data/Pictures/vegetarianBig.svg"
 import DishCardDesktop from "../DishCard/DishCardDesktop/DishCardDesktop";
+import { useNavigate } from "react-router-dom";
+import { Dish, Restaurant } from "../../Types/Types";
 
-function PopularRestaurants() {
-    const popularRestaurants = AllRestaurants.filter((rest, index) => { return index < 3; })
-    const popularDishes = AllDishes.filter((rest, index) => { return index < 3; })
+function PopularRestaurants(props: { Dishes: Array<Dish>, Restaurants: Array<Restaurant> }) {
+    const navigate = useNavigate();
+    const popularDishes = props.Dishes
+    const popularRestaurants = props.Restaurants
     return <PopularDiv>
         <PopularTitle>popular restaurant in epicure:</PopularTitle>
         <PopularItemsDiv>
-            {popularRestaurants.map((restaurant) => { return <RestaurantsCardDesktop restaurant={restaurant}></RestaurantsCardDesktop> })}
+            {popularRestaurants.map((restaurant, i) => { return <RestaurantsCardDesktop key={i} restaurant={restaurant}></RestaurantsCardDesktop> })}
         </PopularItemsDiv>
-        <AllItemsBTN>All restaurants <img src={arrows} /></AllItemsBTN>
+        <AllItemsBTN onClick={() => navigate("/Restaurants")}>All restaurants <img src={arrows} /></AllItemsBTN>
         <br />
         <PopularTitle>SIGNATURE DISH OF:</PopularTitle>
         <PopularItemsDiv>
-            {popularDishes.map((dish) => { return <DishCardDesktop dish={dish}></DishCardDesktop> })}
+            {popularDishes.map((dish,i) => { return <DishCardDesktop key={i} dish={dish}></DishCardDesktop> })}
         </PopularItemsDiv>
         <OurIcons>
             <PopularTitle>THE MEANING OF OUR ICONS:</PopularTitle>

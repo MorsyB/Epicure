@@ -13,6 +13,7 @@ width: 30%;
 text-align: center;
 height: 45vw;
 min-height: 520px;
+margin-bottom: 3%;
 
 `
 

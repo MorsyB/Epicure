@@ -30,6 +30,10 @@ const restaurantsSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    visits: {
+      type: Number,
+      required: false,
+    },
   },
   { timestamps: true }
 );

@@ -18,8 +18,8 @@ export const ChefOfTheWeekTitle = styled.h2`
 `
 export const ChefOfTheWeekName = styled.h3`
   display: flex;
-  position: absolute;
-  top: 68vw;
+  position: relative;
+  bottom: 69px;
   justify-content: center;
   background-color: #fafafa;
   opacity: 0.7;
@@ -46,7 +46,7 @@ export const ChefDescription = styled.p`
   font-size: 18px;
   line-height: 28px;
   /* or 156% */
-
+  margin-top: 0;
   text-align: justify;
   letter-spacing: 1.25px;
 

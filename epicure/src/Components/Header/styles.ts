@@ -118,6 +118,7 @@ export const NavSuggestion = styled.div`
   `
 
 export const ProfilePopup = styled.div`
+    overflow-y: auto;
     position: absolute;
     display: flex;
     flex-direction: column;

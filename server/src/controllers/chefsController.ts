@@ -22,6 +22,16 @@ export class ChefsController {
       return res.send(error);
     }
   }
+  public static async getChefOfTheWeek(req: Request, res: Response) {
+    try {
+      const service = new ChefsService();
+      const param = req.body;
+      const chef = await service.getChefOfTheWeek();
+      return res.send(chef);
+    } catch (error) {
+      return res.send(error);
+    }
+  }
 
   public static async createChef(req: Request, res: Response) {
     try {

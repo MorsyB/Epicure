@@ -22,6 +22,10 @@ const chefsSchema = new mongoose.Schema(
       type: Array,
       required: false,
     },
+    visits: {
+      type: Number,
+      required: false,
+    },
   },
   { timestamps: true }
 );

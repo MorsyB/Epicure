@@ -12,13 +12,13 @@ export class DishesDal {
                     price: dish.price,
                     about: dish.about,
                     restaurant: dish.restaurant,
-                    img: "IMG",
-                    dishMenu: dish.dishMenu,
-                    dishType: dish.dishType
+                    img: "https://github.com/MorsyB/Epicure/blob/main/epicure/src/Data/Pictures/dish.svg",
+                    dishMenu: dish.category,
+                    dishType: dish.type
                 });
                 const response = await Dishes.create(dish);
                 const result = await Restaurants.findOne({ name: response.restaurant }).updateOne({
-                    $push: { Dishes: response.name },
+                    $push: { dishes: response.name },
                 });
                 return response;
             }
@@ -39,19 +39,52 @@ export class DishesDal {
     public findAll(query: any = null) {
         return Dishes.find(query);
     }
+    public async getPopularDishes(query: any = null) {
+        const allDishes = await Dishes.find(query);
+        return this.mostPopular(allDishes);
+    }
 
-    public async getDish(param: { [key: string]: string }) {
-        const data = await Dishes.aggregate([
-            { $match: { name: `${param.name}` } },
-            {
-                $lookup: {
-                    localField: "restaurants",
-                    foreignField: "_id",
-                    from: "restaurants",
-                    as: "restaurants",
-                },
-            },
-        ]);
+    public async getDishesByRestaurant(rest: any) {
+        const data = await Dishes.find({ restaurant: rest });
         return data;
     }
+
+    private mostPopular(Dishes: Array<any>): Array<any> {
+        let mostVisits = [-1, -1, -1]
+        let result: Array<any> = []
+        for (let i = 0; i < Dishes.length; i++) {
+            if (Dishes[i].visits > mostVisits[0]) {
+                mostVisits[2] = mostVisits[1]
+                mostVisits[1] = mostVisits[0]
+                mostVisits[0] = Dishes[i].visits
+            } else {
+                if (Dishes[i].visits > mostVisits[1]) {
+                    mostVisits[2] = mostVisits[1]
+                    mostVisits[1] = Dishes[i].visits
+                }
+                else if (Dishes[i].visits > mostVisits[2]) {
+                    mostVisits[2] = Dishes[i].visits
+                }
+            }
+        }
+        for (let i = 0; i < Dishes.length; i++)
+            if (Dishes[i].visits == mostVisits[0]) {
+                result.push(Dishes[i])
+                mostVisits[0] = i;
+                break;
+            }
+        for (let i = 0; i < Dishes.length; i++)
+            if (Dishes[i].visits == mostVisits[1] && i != mostVisits[0]) {
+                result.push(Dishes[i])
+                mostVisits[1] = i;
+                break;
+            }
+        for (let i = 0; i < Dishes.length; i++)
+            if (Dishes[i].visits == mostVisits[2] && i != mostVisits[1] && i != mostVisits[0]) {
+                result.push(Dishes[i])
+                break
+            }
+        return result
+    }
+
 }

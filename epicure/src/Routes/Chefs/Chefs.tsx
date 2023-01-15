@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
-import { AllChefs } from "../../Data/Data";
-import { filtersArrayChefs } from "../../Helpers/Helpers";
+import chefPic from "../../Data/Pictures/yossi.svg"
+import { filtersArrayChefs, isNewChef, mostPopularChefs } from "../../Helpers/Helpers";
 import { Chef } from "../../Types/Types";
 import { FilterButton, FiltersDiv, RestaurantsTitle } from "../Restaurants/styles";
 import ChefsDesktop from "./ChefsDesktop/ChefsDesktop";
@@ -10,8 +10,11 @@ import {  ChefName } from "./ChefsDesktop/styles";
 import { ChefCard,ChefsCardDiv, ChefsDiv } from "./styles";
 
 function Chefs() {
-    const [width, setWindowWidth] = useState(0)
+    const [AllChefs, setAllChefs] = useState<Array<Chef>>([])
+    const newChefs = AllChefs.filter((chef)=>{return isNewChef(chef)})
+    const mostPopular = mostPopularChefs(AllChefs)
     const [chefsToDisplay, setChefsToDisplay] = useState<Array<Chef>>(AllChefs);
+    const [width, setWindowWidth] = useState(0)
     const [clickedButton, setClickedButton] = useState<Array<boolean>>(filtersArrayChefs[0]);
 
     useEffect(() => {
@@ -22,6 +25,20 @@ function Chefs() {
         return () =>
             window.removeEventListener('resize', updateDimensions);
     }, [])
+
+    useEffect(() => {
+        fetch("/api/chefs/getChefs")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    setAllChefs(data)
+                    setChefsToDisplay(data)
+                } else {
+                    alert("Can't receive data from server...");
+                }
+            });
+    }, [])
+
     const updateDimensions = () => {
         const width = window.innerWidth
         setWindowWidth(width)
@@ -33,11 +50,11 @@ function Chefs() {
                 setClickedButton(filtersArrayChefs[0])
             }}>All</FilterButton>
             <FilterButton clickedBTN={clickedButton[1]} onClick={() => {
-                setChefsToDisplay(AllChefs);
+                setChefsToDisplay(newChefs);
                 setClickedButton(filtersArrayChefs[1])
             }}>New</FilterButton>
             <FilterButton clickedBTN={clickedButton[2]} onClick={() => {
-                setChefsToDisplay(AllChefs);
+                setChefsToDisplay(mostPopular);
                 setClickedButton(filtersArrayChefs[2])
             }}>Most Viewed</FilterButton>
         </FiltersDiv>)
@@ -49,7 +66,7 @@ function Chefs() {
                 <RestaurantsTitle>Chefs</RestaurantsTitle>
                 {filters()}
                 <ChefsCardDiv>
-                    {AllChefs.map((chef) => { return <ChefCard chefPic={chef.picture}><p></p><ChefName>{chef.name}</ChefName></ChefCard> })}
+                    {chefsToDisplay.map((chef,i) => { return <ChefCard key={i} chefPic={chefPic}><p></p><ChefName>{chef.name}</ChefName></ChefCard> })}
                 </ChefsCardDiv>
                 <Footer />
             </ChefsDiv>) : <ChefsDesktop />}

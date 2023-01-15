@@ -1,5 +1,20 @@
 import styled from "styled-components";
-
+export const PopDiv = styled.div`
+overflow-y: auto;
+width: 100vw;
+align-items: center;
+display: flex;
+justify-content: center;
+flex-direction: column;
+`
+export const PopDivDesktop = styled.div`
+overflow-y: auto;
+align-items: center;
+display: flex;
+justify-content: center;
+flex-direction: column;
+padding-bottom: 20px;
+`
 export const SignInTitle = styled.h2`
 font-style: normal;
 font-weight: 200;
@@ -45,6 +60,7 @@ gap: 10px;
 width: 206px;
 height: 48px;
 margin-top: 40px;
+margin-bottom: 40px;
 border: 1px solid #000000;
 background: #fff;
 `
@@ -76,7 +92,7 @@ export const SignInForm = styled.form`
     align-items: center;
     width: 100%;
 `
-export const LogInBTN = styled.input`
+export const LogInBTN = styled.button`
 height: 48px;
 width: 206px;
 background: #000000;
@@ -117,13 +133,20 @@ width: 30vw;
 height: 0;
 
 `
+export const HrDesktop = styled.hr`
+border-bottom: 0.5px solid #979797;
+width: 13vw;
+height: 0;
+
+`
+
 export const HrDiv = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 40px;
 `
 
-export const HrText = styled.text`
+export const HrText = styled.p`
 
 font-style: normal;
 font-weight: 400;
@@ -137,9 +160,10 @@ letter-spacing: 1.97px;
 color: #979797;
 margin-left: 5px;
 margin-right: 5px;
+margin-top: 0;
 `
 
-export const InputLabel = styled.text`
+export const InputLabel = styled.p`
 font-style: normal;
 font-weight: 200;
 font-size: 12px;
@@ -156,7 +180,7 @@ opacity: 0.4;
 
 export const InputDiv = styled.div`
     margin-top: 40px;
-    width: 85vw;
+    width: 85%;
     display: flex;
     flex-direction: column;
 

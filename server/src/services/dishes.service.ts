@@ -6,10 +6,14 @@ export class DishesService {
     const res = await dal.findAll();
     return res;
   }
-
-  public async getDish(param: { [key: string]: string }) {
+  public async getPopularDishes() {
     const dal = new DishesDal();
-    const res = await dal.getDish(param);
+    const res = await dal.getPopularDishes();
+    return res;
+  }
+  public async getDishesByRestaurant(restaurant: any) {
+    const dal = new DishesDal();
+    const res = await dal.getDishesByRestaurant(restaurant);
     return res;
   }
 

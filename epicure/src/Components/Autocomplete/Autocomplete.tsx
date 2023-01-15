@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { AllDishes, AllRestaurants } from "../../Data/Data";
 import { Restaurant, Dish } from "../../Types/Types";
 import { HeroDiv, HeroInput, HeroLabel, HeroSearchDiv, SuggestDiv, SuggestLi, SuggestTitle } from "./styles";
+
 function Autocomplete() {
     const [searchText, setSearchText] = useState<string>("");
     const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
+    const [allDishes, setAllDishes] = useState<Array<Dish>>([])
+    const [allRestaurants, setAllRestaurants] = useState<Array<Restaurant>>([])
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
-    const filteredRestaurants = () => { return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
-    const filteredDishes = () => { return AllDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> }) }
+    const filteredRestaurants = () => { return allRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
+    const filteredDishes = () => { return allDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> }) }
     const wrapperRef = useRef<any>(null);
     useEffect(() => {
         /**
@@ -27,6 +30,28 @@ function Autocomplete() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [wrapperRef]);
+    useEffect(() => {
+        fetch("/api/restaurants/getRestaurants")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    setAllRestaurants(data)
+                } else {
+                    alert("Wrong email or password");
+                }
+            });
+    }, [])
+    useEffect(() => {
+        fetch("/api/dishes/getDishes")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    setAllDishes(data)
+                } else {
+                    alert("Wrong email or password");
+                }
+            });
+    }, [])
 
     const suggestions = () => {
         return (

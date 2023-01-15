@@ -11,44 +11,56 @@ import { useEffect, useState } from 'react';
 import HomepageDesktop from './HomepageDesktop/HomepageDesktop';
 
 function Homepage() {
-    const [width, setWindowWidth] = useState(0)
-    useEffect(() => { 
- 
-      updateDimensions();
- 
-      window.addEventListener('resize', updateDimensions);
+  const [width, setWindowWidth] = useState(0)
+  const [chefOfTheWeek, setChefOfTheWeek] = useState<any>("");
+  const [restaurants, setRestaurants] = useState<any>("");
+  useEffect(() => {
 
-      fetch("/api/restaurants/getRestaurants")
+    updateDimensions();
+
+    window.addEventListener('resize', updateDimensions);
+    return () =>
+      window.removeEventListener('resize', updateDimensions);
+  }, [])
+  useEffect(() => {
+    fetch("/api/chefs/getChefOfTheWeek")
       .then((response) => response.json())
       .then((data) => {
-        if (data.length) {
-          console.log(data)
+        if (data) {
+          fetch("/api/restaurants/getRestaurantsByChef/" + data.name)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data) {
+                setRestaurants(data)
+              } else {
+                alert("Can't receive data from server...");
+              }
+            });
+          setChefOfTheWeek(data)
         } else {
-          alert("NO DATA");
+          alert("Can't receive data from server...");
         }
       });
+  }, [])
 
-      return () => 
-        window.removeEventListener('resize',updateDimensions);
-     }, [])
-     const updateDimensions = () => {
-       const width = window.innerWidth
-       setWindowWidth(width)
-     }
-    return (
-        <>
-        {width < 800?
+  const updateDimensions = () => {
+    const width = window.innerWidth
+    setWindowWidth(width)
+  }
+  return (
+    <>
+      {width < 800 ?
         <HompageDive>
-            <NewHeader />
-            <Autocomplete />
-            <SlidingContent />
-            <ChefOfTheWeek chef={AllChefs[0]} />
-            <AboutUs />
-            <Footer />
-        </HompageDive>:<HomepageDesktop/>
-        }
-        </>
-            
-    );
+          <NewHeader />
+          <Autocomplete />
+          <SlidingContent />
+          <ChefOfTheWeek chef={chefOfTheWeek} restaurants={restaurants} />
+          <AboutUs />
+          <Footer />
+        </HompageDive> : <HomepageDesktop />
+      }
+    </>
+
+  );
 }
 export default Homepage;

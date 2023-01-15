@@ -11,13 +11,11 @@ export class DishesController {
       return res.send(error);
     }
   }
-
-  public static async getDish(req: Request, res: Response) {
+  public static async getPopularDishes(req: Request, res: Response) {
     try {
       const service = new DishesService();
-      const param = req.body;
-      const Dish = await service.getDish(param);
-      return res.send(Dish);
+      const Dishes = await service.getPopularDishes();
+      return res.send(Dishes);
     } catch (error) {
       return res.send(error);
     }
@@ -28,13 +26,22 @@ export class DishesController {
       const params = req.body;
       const service = new DishesService();
       const Dish = await service.createDish(params);
-      console.log(Dish)
       return res.status(200).send(JSON.parse("Completed successfully"));
     } catch (error) {
       return res.send(error);
     }
   }
 
+  public static async getDishByRestaurant(req: Request, res: Response) {
+    try {
+      const params = req.params.Restaurant;
+      const service = new DishesService();
+      const Dishes = await service.getDishesByRestaurant(params);
+      return res.status(200).send(JSON.stringify(Dishes));
+    } catch (e) {
+      return res.send(e)
+    }
+  }
   public static async updateDish(req: Request, res: Response) {
     try {
       const params = req.body;

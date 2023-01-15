@@ -53,4 +53,10 @@ export class ChefsDal {
     ]);
     return data;
   }
+
+  public async getChefOfTheWeek() {
+    const data = await Chefs.find();
+
+    return data[0];
+  }
 }

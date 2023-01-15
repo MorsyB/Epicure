@@ -30,6 +30,10 @@ const dishesSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    visits: {
+      type: Number,
+      required: false,
+    }
   },
   { timestamps: true }
 );

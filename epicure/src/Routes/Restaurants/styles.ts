@@ -9,7 +9,6 @@ margin-left: 5%;
 margin-right: 2%;
     display: flex;
     margin-bottom: 20px;
-    justify-content: space-between;
 `
 export const FilterButton = styled.button<ButtonProps>`
     border: 0px;
@@ -20,6 +19,7 @@ export const FilterButton = styled.button<ButtonProps>`
     line-height: 21px;
     letter-spacing: 1.92px;
     border-bottom: ${props => props.clickedBTN ? "1.8px" : "0px"} solid rgba(222, 146, 0, 0.9);
+    margin-right: 3%;
 `
 
 export const CardDiv = styled.div`

@@ -30,4 +30,54 @@ export class RestaurantsDal {
   public findAll() {
     return Restaurants.find();
   }
+
+  public async getPopularRestaurants() {
+    const allRestaurants = await Restaurants.find();
+    return this.mostPopular(allRestaurants);
+  }
+
+  public findAllByChef(chef: any) {
+    return Restaurants.find({ chef: chef });
+  }
+  public findRestaurant(restaurant: any) {
+    return Restaurants.findOne({ name: restaurant });
+  }
+
+  private mostPopular(Restaurants: Array<any>): Array<any> {
+    let mostVisits = [-1, -1, -1]
+    let result:Array<any> = []
+    for (let i = 0; i < Restaurants.length; i++) {
+      if (Restaurants[i].visits > mostVisits[0]) {
+        mostVisits[2] = mostVisits[1]
+        mostVisits[1] = mostVisits[0]
+        mostVisits[0] = Restaurants[i].visits
+      } else {
+        if (Restaurants[i].visits > mostVisits[1]) {
+          mostVisits[2] = mostVisits[1]
+          mostVisits[1] = Restaurants[i].visits
+        }
+        else if (Restaurants[i].visits > mostVisits[2]) {
+          mostVisits[2] = Restaurants[i].visits
+        }
+      }
+    }
+    for (let i = 0; i < Restaurants.length; i++)
+      if (Restaurants[i].visits == mostVisits[0]) {
+        result.push(Restaurants[i])
+        mostVisits[0] = i;
+        break;
+      }
+    for (let i = 0; i < Restaurants.length; i++)
+      if (Restaurants[i].visits == mostVisits[1] && i != mostVisits[0]) {
+        result.push(Restaurants[i])
+        mostVisits[1] = i;
+        break;
+      }
+    for (let i = 0; i < Restaurants.length; i++)
+      if (Restaurants[i].visits == mostVisits[2] && i != mostVisits[1]) {
+        result.push(Restaurants[i])
+        break
+      }
+    return result
+  }
 }

@@ -6,7 +6,7 @@ export const Hero = styled.div`
   background-image: url(${heroImg});
   width: 100%;
   background-size: cover;
-  height: 40vw;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,10 +37,12 @@ color: #000000;
 
 export const HeroInputDesktop = styled.input`
   margin-top: 25px;
-  width: 70%;
+  width: 55%;
   height: 48px;
   background: url(${search}) no-repeat scroll 10px;
   text-align: center;
+  text-align: left;
+  padding-left: 10%;
   font-style: normal;
     font-weight: 200;
     font-size: 24px;
@@ -50,7 +52,7 @@ export const HeroInputDesktop = styled.input`
   border-radius: 4px;
   border: 0.5px solid #000000;
   &:focus{
-      width: 85%;
+      width: 60%;
       outline: none;
     };
   &::placeholder{
@@ -62,4 +64,36 @@ export const HeroInputDesktop = styled.input`
         color: #000000;
 
   }
+`
+export const SearchRes = styled.a`
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+margin-left: 12%;
+letter-spacing: 1.29px;
+:hover{
+  cursor: pointer;
+}
+margin-bottom: 2px;
+`
+export const SearchResTitle = styled.h3`
+font-style: normal;
+font-weight: 200;
+font-size: 16px;
+line-height: 19px;
+letter-spacing: 1.29px;
+margin-left: 12%;
+`
+export const InputPopDiv = styled.div`
+    text-align: left;
+    position: absolute;
+    top:59vh;
+    max-height:40vh ;
+    min-height: 8vh;
+    width: 36%;
+    background: #fff;
+    overflow-y: auto;
+    padding-bottom: 1%;
 `

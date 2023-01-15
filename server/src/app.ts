@@ -13,10 +13,6 @@ app.use(cors());
 
 app.use(routes);
 
-app.get("/Cancel", async (req, res) => {
-    res.status(200).json({"name":"Hello world"});
-  });
-  
 
 connectDb().then(async () => {
     app.listen(port, () => console.log("Listening on port:" + port));

@@ -54,7 +54,7 @@ export const PriceDiv = styled.div`
 `
 
 export const CoinImg = styled.img`
-  margin-top: 7px;
+  margin-top: 13px;
   margin-right: 3px;
 `
 

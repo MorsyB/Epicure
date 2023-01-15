@@ -6,10 +6,10 @@ import { ButtonDiv, CenterDiv, DividingHr, EmptyBag, HamMenu, LeftsideDiv, Navba
 import { FooterBtn } from '../Footer/styles';
 import { SuggestLi, SuggestTitle } from '../Autocomplete/styles';
 import { Dish, Restaurant } from '../../Types/Types';
-import { AllDishes, AllRestaurants } from '../../Data/Data';
 import Profile from '../Profile/Profile';
 import { BagDiv } from '../Bag/styles';
 import bag from "../../Data/Pictures/bag.svg"
+import BagPopupMobile from '../BagPopup/BagPopupMobile/BagPopupMobile';
 
 
 function Header() {
@@ -17,10 +17,14 @@ function Header() {
     const [searchText, setSearchText] = useState<string>("");
     const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
     const [showPopup, setShowPopup] = useState<Array<boolean>>([false, false, false, false, false]);
+    const [allRestaurants, setAllRestaurants] = useState<Array<Restaurant>>([])
+    const [allDishes, setAllDishes] = useState<Array<Dish>>([])
     const navigate = useNavigate();
     const filterLists = (element: (Restaurant | Dish)) => { return element.name.toLowerCase().includes(searchText.toLowerCase()) }
     const wrapperRef = useRef<any>(null);
-    const filteredRestaurants = () => { return AllRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
+    const filteredRestaurants = () => { return allRestaurants.filter(filterLists).map(restaurant => { return <SuggestLi key={restaurant.name} onClick={() => { navigate('./Restaurants/' + restaurant.name) }}> {restaurant.name} </SuggestLi> }) }
+    const checkIfFetched = (object: string) => { return sessionStorage.getItem(object) != null && sessionStorage.getItem(object) != undefined }
+
     useEffect(() => {
         /**
          * Alert if clicked on outside of element
@@ -37,7 +41,28 @@ function Header() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [wrapperRef]);
-
+    useEffect(() => {
+        fetch("/api/restaurants/getRestaurants")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    setAllRestaurants(data)
+                } else {
+                    alert("Wrong email or password");
+                }
+            });
+    }, [])
+    useEffect(() => {
+        fetch("/api/dishes/getDishes")
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    setAllDishes(data)
+                } else {
+                    alert("Wrong email or password");
+                }
+            });
+    }, [])
     const showNav = () => {
         return !showPopup[0];
     }
@@ -45,12 +70,12 @@ function Header() {
         return (
             <NavSuggestion>
                 <ul>
-                    {AllRestaurants.filter(filterLists) && <SuggestTitle>Restaurants:</SuggestTitle>}
+                    {allRestaurants.filter(filterLists) && <SuggestTitle>Restaurants:</SuggestTitle>}
                     {filteredRestaurants()}
                 </ul>
                 <ul>
                     <SuggestTitle>Dishes:</SuggestTitle>
-                    {AllDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> })}
+                    {allDishes.filter(filterLists).map(dish => { return <SuggestLi key={dish.name} onClick={() => { navigate('./Dishes/' + dish.name) }}> {dish.name} </SuggestLi> })}
 
                 </ul>
             </NavSuggestion>
@@ -121,12 +146,14 @@ function Header() {
     }
 
     const bagPopup = () => {
-        return <>
-            <BagDiv ref={wrapperRef}>
-                <img src={bag} />
-                <EmptyBag>Your bag is empty</EmptyBag>
-            </BagDiv>
-        </>
+        return <div ref={wrapperRef}>
+            {checkIfFetched("order" || "") ? <BagPopupMobile /> : <BagDiv>
+                <>
+                    <img src={bag} />
+                    <EmptyBag>Your bag is empty</EmptyBag>
+                </>
+            </BagDiv>}
+        </div>
     }
     return (<>
         <NavbarDiv>

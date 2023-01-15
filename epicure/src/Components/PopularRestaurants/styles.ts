@@ -37,6 +37,9 @@ text-transform: capitalize;
 float: right;
 margin-right: 8%;
 margin-top: 3%;
+:hover{
+  cursor: pointer;
+}
 `
 
 
