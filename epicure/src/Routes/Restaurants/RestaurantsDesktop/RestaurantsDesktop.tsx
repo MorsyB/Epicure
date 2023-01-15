@@ -61,11 +61,7 @@ function RestaurantsDesktop() {
                 <NormalFilterBTN onClick={() => { setFiltersBTNs(filtersArray[3]); setRestaurantsToDisplay(openNow) }} clickedBTN={filtersBTNs[3]}>Open Now </NormalFilterBTN>
                 <NormalFilterBTN onClick={() => { setFiltersBTNs(filtersArray[4]) }} clickedBTN={filtersBTNs[4]}>Map View </NormalFilterBTN>
             </NormalFiltersDesktopDiv>
-            <DropdownFiltersDesktopDiv>
-                <DropdownFilterBTN onClick={() => { setDropdownBTNs([!dropdownBTNs[0], false, false]) }} clickedBTN={dropdownBTNs[0]}>Price Range <img src={downArrow} /></DropdownFilterBTN>
-                <DropdownFilterBTN onClick={() => { setDropdownBTNs([false, !dropdownBTNs[1], false]) }} clickedBTN={dropdownBTNs[1]}>Distance <img src={downArrow} /></DropdownFilterBTN>
-                <DropdownFilterBTN onClick={() => { setDropdownBTNs([false, false, !dropdownBTNs[2]]) }} clickedBTN={dropdownBTNs[2]}>Rating <img src={downArrow} /></DropdownFilterBTN>
-            </DropdownFiltersDesktopDiv>
+
         </FiltersDesktopDiv>
     }
     const RestaurantsCardDiv = () => {

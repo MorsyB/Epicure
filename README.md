@@ -1,2 +1,2 @@
 # Epicure
-# Don't check responsive for desktop!
+# Didn't implement checkout
